@@ -1,0 +1,80 @@
+/* All tags
+----------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  position: static;
+}
+
+/* Buttons
+----------------------------------------------- */
+select, button, input[type="button"], input[type="submit"] {
+  padding: 1ex;
+  vertical-align: bottom;
+}
+
+/* Forms
+----------------------------------------------- */
+input {
+  padding: 1px 6px;
+}
+
+input[type="text"]  {
+  border: 1px solid #DDD;
+  font-size: 28px;
+  height: 50px;
+}
+
+select, button, input[type="button"], input[type="submit"] {
+  height: 54px;
+}
+
+/* Radius
+----------------------------------------------- */
+select, button, input {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+}
+
+/* Body
+----------------------------------------------- */
+body {
+  font: normal normal 14px Verdana, Arial, sans-serif;
+  color: #222222;
+  line-height: 1.5;
+}
+
+/* Links
+----------------------------------------------- */
+a {
+  color: gray;
+  text-decoration: italic;
+}
+
+a:link, a:visited , a:hover {
+  text-decoration: underline;
+}
+
+a:link {
+  color: #5588aa;
+}
+
+a:visited {
+  color: #555555;
+}
+
+a:hover {
+  color: #cc6600;
+}
+
+/* Images
+----------------------------------------------- */
+a img {
+  border-width: 0;
+}
+
+/* Frames
+----------------------------------------------- */
+iframe {
+  border: none;
+}
