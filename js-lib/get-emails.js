@@ -2,7 +2,7 @@ var _CONTEXT = 20;
 
 function _filterAt(content) {
   content = content.replace(/\s+/g, ' ');
-  return content.replace(/[^a-z0-9_.%+-]+[ae]t[^a-z0-9.@-]+|([_-]+)[ae]t\1/gi, '@');
+  return content.replace(/[^a-z0-9_.%+-]+[ae]t[^a-z0-9.@-]+|([_+-]+)[ae]t\1/gi, '@');
 }
 
 function getEmails(content, res) {
