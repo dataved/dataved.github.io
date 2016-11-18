@@ -1,0 +1,399 @@
+
+<!-- saved from url=(0046)http://ocp.uesp.net/partials/instructions.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div dojotype="dijit.layout.TabContainer" id="instructions">
+
+    <!-- Overview -->
+    <div dojotype="dijit.layout.ContentPane" id="instructionsOverview" title="Overview" selected="true">
+        <div class="moduleSection">
+            <p>
+                To get the most out of OCP, you need at least a basic understanding of Oblivion's
+                leveling process. This process is somewhat complex and best understood after
+                you've played the game, but good starting points are the
+                <a href="http://www.uesp.net/wiki/Oblivion:Leveling">Leveling</a> and
+                <a href="http://www.uesp.net/wiki/Oblivion:Character_Creation">Character
+                    Creation</a> pages at <a href="http://www.uesp.net/">UESP</a>.
+            </p>
+            <p>
+                Despite the complexity of Oblivion's leveling process, OCP is designed to be very
+                simple to use. Full details are in the other instruction tabs, but here are the
+                steps for basic usage:
+            </p>
+            <ol>
+                <li>
+                    Choose <span class="plannerSection">New Character</span> or
+                    <span class="plannerSection">Existing Character</span> in the
+                    <span class="plannerSection">Character Details</span> panel.
+                </li>
+                <li>
+                    Select the race, birthsign, and class for your new character or enter the
+                    level, attributes, and skills for your existing character.
+                </li>
+                <li>
+                    Change the <span class="plannerSection">Leveling Order</span> to match the
+                    order you want to increase your attributes.
+                </li>
+                <li>
+                    Every change to the <span class="plannerSection">Character Details</span> and
+                    <span class="plannerSection">Leveling Order</span> automatically updates all
+                    sections of the <span class="plannerSection">Leveling Results</span>.
+                </li>
+                <li>
+                    Evaluate all sections of the
+                    <span class="plannerSection">Leveling Results</span>, paying particular
+                    attention to anything in red (hover over it for an explanation of the
+                    concern).
+                </li>
+                <li>
+                    Tweak your <span class="plannerSection">Character Details</span> and
+                    <span class="plannerSection">Leveling Order</span> until you are happy with
+                    the <span class="plannerSection">Leveling Results</span>.
+                </li>
+                <li>
+                    Apply the data to the game! While playing, make sure that you follow the
+                    <span class="plannerSection">Leveling Order</span> and don't exceed the
+                    <span class="instructKeyword">Spare Skill Points per Level</span>, and you can
+                    achieve OCP's projected maximums.
+                </li>
+                <li>
+                    As your character levels up, you may want to periodically use OCP to recheck
+                    that you are still on track to reach your goals.
+                </li>
+            </ol>
+
+            <p>
+                To help keep OCP simple, it uses several conventions throughout all parts of the
+                planner:
+            </p>
+            <ul>
+                <li>
+                    When you hover your mouse over most abbreviations, buttons, links, and color
+                    highlights, a tooltip with more details may be shown (like
+                    <span class="majorSkill" title="Hvy is the abbreviation for the Heavy Armor skill">Hvy</span>).
+                </li>
+                <li>
+                    Skills are often grouped by which attribute they affect.
+                </li>
+                <li>
+                    Major skills are usually shown in <span class="majorSkill">bold</span>.
+                </li>
+            </ul>
+
+            <p>
+                As an example, you can view the complete new and existing character
+                data (including historical leveling details that are lost upon any
+                recalculation) for the character I created and leveled using OCP as a guide:
+                <a href="javascript:ocp.nullis.safeSetNow();">Nullis</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- Character Details -->
+    <div dojotype="dijit.layout.ContentPane" id="instructionsDetails" title="Character Details">
+        <div class="moduleSection">
+            <p>
+                The biggest part of OCP is selecting your character's details. Whether you have an
+                existing character or you are creating a new one, OCP provides a straightforward
+                interface that shows the impact of your selections.
+            </p>
+            <p>
+                Key points for all character details:
+            </p>
+            <ul>
+                <li>
+                    When you submit any new or existing character detail, the
+                    <span class="plannerSection">Leveling Results</span> are automatically
+                    recalculated and redisplayed. This includes switching between
+                    <span class="plannerSection">New Character</span> and
+                    <span class="plannerSection">Existing Character</span> sections.
+                </li>
+                <li>
+                    When <span class="plannerSection">New Character</span> is selected, the values
+                    of <span class="plannerSection">Existing Character</span> are ignored and
+                    vice-versa.
+                </li>
+                <li>
+                    OCP does not take into account attributes/skills beyond the standard maximum
+                    of 100 nor does it account for skill points lost from serving a jail sentence.
+                    If your existing character has an out of range attribute/skill value, set it
+                    to the closest valid value and take that into account when you evaluate the
+                    <span class="plannerSection">Leveling Results</span>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="moduleSection">
+            <div class="moduleTitle">New Character</div>
+            <p>
+                The most important time for planning is when creating a new character. There are
+                many character configurations that are almost impossible to efficiently level.
+                Unfortunately, many of these bad configurations include the default classes and
+                the examples used in the Official Game Guide.
+            </p>
+            <p>
+                From the <span class="plannerSection">New Character</span> section, you can see
+                your current selections and a snapshot of their details. Each button opens a
+                dialog where you can change your selections.
+            </p>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Race</div>
+                <p>
+                    In the overview tab of the race dialog, you'll find details about each race's
+                    background, their special abilities and weaknesses, and their general approach
+                    to tackling the conflicts in Tamriel. Clicking on a race's image will bring up
+                    a sub-dialog for selecting a gender; which is necessary since the starting
+                    attributes are different for each gender.
+                </p>
+                <p>
+                    From the details tab, you'll see all of the starting attributes and skill
+                    bonuses for every race and gender. Attributes with a red background are lower
+                    than average and attributes with a green background are higher than average.
+                    To select a race and gender, press the M or F button in each race's column.
+                </p>
+                <p class="instructNote">
+                    <span>Note:</span> The Official Game Guide by Prima gives Imperials a 5 point
+                    bonus in the Heavy Armor skill, but it is actually a 10 point bonus.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Birthsign</div>
+                <p>
+                    The birthsign dialog simply lists all of the birthsigns and their associated
+                    benefits. You can select a birthsign by clicking on its image. Any attribute
+                    bonuses are shown in the <span class="plannerSection">Initial Stats</span>
+                    section and any special abilities are shown in the
+                    <span class="plannerSection">New Character</span> summary.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Class</div>
+                <p>
+                    The class dialog's overview tab describes each predefined class and its
+                    details. This is a good way to get a feel for intended play style of each
+                    predefined class. You can select a predefined class by clicking on its image.
+                </p>
+                <p>
+                    The details tab summarizes the attribute bonuses and starting skill values for
+                    all of the predefined classes. Major skills are highlighted in
+                    <span class="majorSkill">bold</span>. You can select a predefined class by
+                    clicking on its name.
+                </p>
+                <p>
+                    The custom tab allows you to create your own class instead of using one of the
+                    predefined ones. You get to select the specialization, favored attributes, and
+                    major skills. To help evaluate the impact of specialization, the skills
+                    affected by the current selection are highlighted. Any errors are shown at the
+                    bottom of the dialog and must be corrected before a custom class can be
+                    submitted.
+                </p>
+                <p class="instructNote">
+                    <span>Note:</span> The game says that class specialization gives a 10 point
+                    bonus to affected skills, but it actually gives a 5 point bonus.
+                </p>
+            </div>
+        </div>
+
+        <div class="moduleSection">
+            <div class="moduleTitle">Existing Character</div>
+            <p>
+                For existing characters, the new character settings of race (and gender),
+                birthsign, and class are no longer necessary for planning and analysis. Instead,
+                you simply input the current values of your existing character's attributes and
+                skills.
+            </p>
+            <p class="instructNote">
+                <span>Note:</span> Since the game itself controls the values of existing
+                characters, OCP does not validate these inputs for sanity. For example, OCP won't
+                prevent you from making an existing character with an Endurance of 50 (which
+                ensures a minimum Health of 100) and a Health of 70.
+            </p>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Level</div>
+                <p>
+                    In truth, a character's level has no impact on OCP's leveling and analysis
+                    algorithms. OCP uses only the attributes and skills of a character and does
+                    not do any level checking. However, the level slider can be used to select
+                    your existing character's level so you can gauge at what level certain things
+                    will happen in the future; e.g. at what level will you max out your Magicka.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Attributes</div>
+                <p>
+                    The attributes dialog lets you set the current values of your core and derived
+                    attributes. Simply set the correct value for each slider and submit the
+                    changes. A summary of the current attributes is shown in the
+                    <span class="plannerSection">Existing Character</span> section.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Skills</div>
+                <p>
+                    All skill values and their major/minor status are entered in the skills
+                    dialog. To help ensure the skill values are always valid, checking/unchecking
+                    the major status of a skill automatically adjusts the skill's value. Because
+                    of this, it is easier to enter the major/minor status of a skill before
+                    entering its value. When all settings are valid and you submit the changes, a
+                    summary of the current skill values (with major skills shown in
+                    <span class="majorSkill">bold</span>) is shown in the
+                    <span class="plannerSection">Existing Character</span> section.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leveling Order -->
+    <div dojotype="dijit.layout.ContentPane" id="instructionsOrder" title="Leveling Order">
+        <div class="moduleSection">
+            <p>
+                The <span class="plannerSection">Leveling Order</span> is the order that the
+                attributes are increased by the simulated leveling algorithm. Each level, the
+                first three attributes that are not already maximized are increased. These are
+                called the <span class="instructKeyword">Selected Attributes</span>. If
+                possible, the skills associated with the
+                <span class="instructKeyword">Selected Attributes</span> are also increased to
+                yield the maximum possible attribute bonus.
+            </p>
+            <p>
+                To change the order of attributes, simply drag and drop them. The first
+                attribute chosen is at the top of the list. You can use Shift-click and
+                Control-click to select multiple attributes at once.
+            </p>
+            <p>
+                Key points for the attribute leveling order:
+            </p>
+            <ul>
+                <li>
+                    The attribute leveling order is the first factor taken into account by the
+                    leveling process and overrides all others. The
+                    <span class="instructKeyword">Selected Attributes</span> will be raised
+                    regardless of any skill bonuses. For example, if Strength, Endurance, and
+                    Intelligence are the
+                    <span class="instructKeyword">Selected Attributes</span>, they will all be
+                    increased even if Strength can only be raised by 1 point while Willpower can
+                    be raised by 5 points.
+                </li>
+                <li>
+                    If possible, the leveling algorithm will accrue the 10 major skill points
+                    necessary to level from the skills associated with the
+                    <span class="instructKeyword">Selected Attributes</span>. If the 10 points
+                    cannot be found from those skills, the leveling algorithm uses the least
+                    important major skills first.
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Leveling Results -->
+    <div dojotype="dijit.layout.ContentPane" id="instructionsResults" title="Leveling Results">
+        <div class="moduleSection">
+            <p>
+                The information in <span class="plannerSection">Leveling Results</span> is the
+                reason OCP exists. The results are automatically recalculated and redisplayed
+                whenever a change is made to the
+                <span class="plannerSection">Character Details</span> or the
+                <span class="plannerSection">Leveling Order</span>. The results are broken down
+                into three separate areas that should all be examined when evaluating the potency
+                of your character configuration and leveling order.
+            </p>
+            <p>
+                While the leveling algorithm and analysis attempts to be as smart as possible, it
+                is still not as smart as you can be. Plus, while playing, it is possible that
+                situations will arise that make a different leveling path more efficient. When
+                this occurs, you should use OCP to re-evaluate your path and make the best
+                decision for your play goals.
+            </p>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Initial Stats</div>
+                <p>
+                    The initial stats are the stats that your character started with. For existing
+                    characters, this exactly what you input into the
+                    <span class="plannerSection">Existing Character</span> section. However, for
+                    new characters, this gives a breakdown of how your race, birthsign, and class
+                    contributed to your starting attribute and skill values. Per usual, major
+                    skills are highlighted in <span class="majorSkill">bold</span>.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Leveling Details</div>
+                <p>
+                    The <span class="plannerSection">Leveling Details</span> shows the level by
+                    level breakdown of the simulated leveling process. Each level, the
+                    <span class="instructKeyword">Selected Attributes</span> are increased as well
+                    as any skills that yield an attribute bonus or are required for the major
+                    points necessary to level. The values for all majors skills are shown in
+                    <span class="majorSkill">bold</span>.
+                </p>
+                <p>
+                    All changed values are shown with a yellow background. All values that could
+                    not be raised or maximized when they should have been are shown with a red
+                    background. These red background numbers are especially important because they
+                    indicate areas where the leveling process was less than optimal. Hovering your
+                    mouse over any red background number will show a tooltip explaining the issue.
+                </p>
+                <p>
+                    Selecting a level loads that level's details into the
+                    <span class="plannerSection">Existing Character</span> section. This allows
+                    you to evaluate the impact of multiple attribute orders; e.g. if you want to
+                    raise your Intelligence to 75ish for the extra Magicka, but then switch to
+                    Willpower for the Magicka regeneration. Just load the level data prior to the
+                    order switch, switch the order, and evaluate the aggregate results.
+                </p>
+            </div>
+
+            <div class="moduleSubsection">
+                <div class="moduleSubtitle">Analysis</div>
+                <p>
+                    After the leveling process has been simulated, OCP analyzes the
+                    <span class="plannerSection">Leveling Details</span> and displays the
+                    important points in the <span class="plannerSection">Analysis</span> section.
+                    Since the analysis is based on the
+                    <span class="plannerSection">Leveling Details</span>, any inefficiencies there
+                    will be reflected in the <span class="plannerSection">Analysis</span>.
+                </p>
+                <p>
+                    Like with the <span class="plannerSection">Leveling Details</span>, anything
+                    with a red background indicates a sub-optimal value. Make sure you hover over
+                    each one to get an explanation of why the value is considered sub-optimal.
+                </p>
+                <p>
+                    Unless you are a hardcore, power-leveling player, you will inevitably get a
+                    few uninteded skill ups in some of the more useful skills; e.g. it's hard to
+                    avoid gaining a few points in Mercantile or Athletics every level. When this
+                    occurs, the key question is whether or not these ancillary skill ups will
+                    detract from your maximum potency. This is where
+                    <span class="instructKeyword">Spare Skill Points per Level</span> come into
+                    play.
+                </p>
+                <p>
+                    After an attribute has been maximized, the remaining points in its associated
+                    skills are considered <span class="instructKeyword">Spare Skill Points</span>.
+                    In other words, if you "wasted" all of your
+                    <span class="instructKeyword">Spare Skill Points</span>, you could still reach
+                    your character's maximum potency. Thus the
+                    <span class="instructKeyword">Spare Skill Points per Level</span> is the
+                    number of skill points you can waste every level until an attribute is
+                    maximized.
+                </p>
+                <p>
+                    By using <span class="instructKeyword">Spare Skill Points per Level</span>,
+                    you can gauge how careful (or careless!) you have to be with the skill ups for
+                    each attribute. When planning your character, be very careful about attributes
+                    whose <span class="instructKeyword">Spare Skill Points per Level</span> is
+                    less than 2 or 3. If you maintain a proper number of
+                    <span class="instructKeyword">Spare Skill Points per Level</span>, you can
+                    ensure that your gameplay experience won't be hindered by trying to avoid
+                    premature skill ups.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body></html>

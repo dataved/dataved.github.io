@@ -1,0 +1,123 @@
+
+<!-- saved from url=(0037)http://ocp.uesp.net/partials/faq.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><div id="faq">
+    <div class="expCollButtons">
+        <button dojotype="dijit.form.Button" onclick="ocp.expCollTitlePanes(&#39;#faq .faqItem&#39;, true)">Expand All</button>
+        <button dojotype="dijit.form.Button" onclick="ocp.expCollTitlePanes(&#39;#faq .faqItem&#39;, false)">Collapse All</button>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="My existing character&#39;s attributes/skills are beyond the range of OCP&#39;s inputs.">
+        <p>
+            The attribute and skill inputs for existing characters only support the range of
+            unmodified values. When inputing your values, make sure your character is not under
+            any spell, ability, or item effects and has no damaged attributes or skills.
+        </p>
+        <p>
+            Additionally, OCP does not support skills lowered below their initial values by a
+            jail sentence nor attributes/skills raised beyond 100 from items (like the
+            <a href="http://www.uesp.net/wiki/Oblivion:Oghma_Infinium">Oghma Infinium</a>) or
+            quest rewards (like from
+            <a href="http://www.uesp.net/wiki/Oblivion:Origin_of_the_Gray_Prince">Origin of the
+                Gray Prince</a>).
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="Why doesn&#39;t the leveling algorithm assume skills can be lowered by serving a jail
+            sentence or increased by item/quest rewards?">
+        <p>
+            Not only would this significantly complicate the already complex leveling algorithm,
+            but not everyone believes this is an acceptable way to continue leveling after all
+            major skills have been maxed.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="Why doesn&#39;t OCP allow me to control which skills are raised each level?">
+        <p>
+            This is done for two reasons. First, OCP is meant to be simple to use and having to
+            set which skills you raise every level would be too complex. Beyond the requisite
+            <span class="plannerSection">Character Details</span>, OCP uses a simple
+            <span class="plannerSection">Leveling Order</span> to control the leveling algoritm.
+        </p>
+        <p>
+            Secondly, the exact skills raised by the leveling algorithm are not particularly
+            important for potency analysis. So long as the skills are for the same attribute and
+            have the same major/minor status, they are interchangeable. For example, if OCP uses
+            minor skill Blade to level up Strength, it won't matter if your character actually
+            uses minor skill Blunt instead; however, substituting major skill Hand-to-Hand or
+            Marksmanship would change your character's potency.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="How do I change the Leveling Order midway through leveling?">
+        <p>
+            For simplicity, OCP only supports one
+            <span class="plannerSection">Leveling Order</span> at a time, however you can simulate
+            using different orders. Each time you want to change the order, go to the
+            <span class="plannerSection">Leveling Details</span>, set the
+            <span class="plannerSection">Existing Details</span> to the level before the new
+            order, and then change to the new attribute order. Repeat the process for all orders.
+            While the final <span class="plannerSection">Leveling Details</span> will only show
+            the levels for the final attribute order, its data and the
+            <span class="plannerSection">Analysis</span> will reflect the aggregate of all orders.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="How can I do a side-by-side comparison of different character configurations?">
+        <p>
+            OCP does't support any innate way to do this because it would overly complicate the
+            interface. It's best to simply open a new instance of OCP in its own browser window
+            for every character configuration you want to compare.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="Why did you write OCP?">
+        <p>
+            When I got Oblivion, I hit the net figure out how I should configure a character for
+            my playstyle. While I found lots of info about the complexities and pitfalls of
+            Oblivion's leveling process, the only concrete character info was templates that
+            others had used. Character templates are great as examples, but if you want to tweak
+            one aspect of a template, you are usually at a loss to gauge the full impact of the
+            change.
+        </p>
+        <p>
+            It was obvious that a tool was needed, but the only one I found was purely for setup
+            -- it didn't do any analysis. For me, the key question is "Can this character
+            configuration maximize all attributes with a less-than-perfect playstyle?" While
+            playing the game, I don't want to be a slave to the occasional stray Mercantile,
+            Acrobatics, or Athletics skill up. After considering the options for a tool with this
+            kind of analysis, I settled on a web browser application so it would be easily
+            accessible to all Oblivion users.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="Who is this Nullis character?">
+        <p>
+            Nullis is my first Oblivion character and one that I created using OCP. He is a Male
+            Khajiit specializing in Stealth Bow attacks -- a kind of medieval sniper. Because of
+            OCP, I was able to craft a custom class and leveling plan that allows me to maximize
+            all attributes while being able to safely waste a few skill points each level.
+        </p>
+        <p>
+            For fun, I added the complete details of Nullis into OCP. When you
+            <a href="javascript:ocp.nullis.safeSetNow();">load Nullis' data</a>, you can see his
+            <span class="plannerSection">New Character</span> data, a snapshot of his
+            <span class="plannerSection">Existing Character</span> data, and the
+            <span class="plannerSection">Leveling Order</span> I (roughly) followed. Additionally,
+            I added the actual past level data to the
+            <span class="plannerSection">Leveling Details</span> results. These details are just
+            for fun, cannot be selected, and are lost upon any changes to the
+            <span class="plannerSection">Character Details</span> or
+            <span class="plannerSection">Leveling Order</span>.
+        </p>
+    </div>
+
+    <div dojotype="dijit.TitlePane" class="faqItem" open="false" title="Why does your email address have to be &quot;decoded&quot;?">
+        <p>
+            Spam bots can parse through web page sources looking for email addresses, so I encoded
+            mine. It's not strictly necessary, but it was a good excuse to make a visually fun
+            decoding process when you click on
+            <a href="javascript:ocp.contact.dialog.show()">Richard Doll</a>.
+        </p>
+    </div>
+</div>
+</body></html>
