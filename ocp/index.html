@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0020)http://ocp.uesp.net/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" dir="ltr"><!--
+    Oblivion Character Planner
+    All OCP content designed and implemented by Richard Doll.
+    Developed on FireFox 3.0/3.5 using Dojo 1.3, XHTML 1.0, CSS 2.1, XML 1.0, and JavaScript 1.5.
+
+    (C) Copyright 2009 by Richard Doll, All Rights Reserved.
+
+    License:
+    You are free to use, copy, or modify this software provided it remains free
+    of charge for all users, the source remains open and unobfuscated, and the
+    author, copyright, license, and warranty information remains intact and
+    clearly visible.
+
+    Warranty:
+    All content is provided as-is. The user assumes all liability for any
+    direct or indirect damages from usage.
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- HTTP header info -->
+    
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Language" content="en">
+
+    <!-- Title -->
+    <title>Oblivion Character Planner</title>
+
+    <!-- Describe this document -->
+    <meta name="author" content="Richard Doll">
+    <meta name="copyright" content="Copyright © 2009 Richard Doll, All Rights Reserved.">
+    <!-- TODO: Put my naked email addy here?
+    <link rev="made" href="mailto:someone@somewhere.com" />
+     -->
+    <meta name="description" content="Plans a new or existing Elder Scrolls IV: Oblivion character&#39;s leveling
+            progress.">
+    <meta name="keywords" content="OCP, TES4, TES 4, TESIV, TES IV, The Elder Scrolls, Elder Scrolls, Oblivion,
+            Elder Scrolls: Oblivion, The Elder Scrolls: Oblivion, TES: Oblivion,
+            TES IV: Oblivion, TES 4: Oblivion, ES: Oblivion, ES 4: Oblivion, ES IV: Oblivion,
+            character, planner, plan, forecast, predict, progress, level, leveling,
+            power level, power leveling">
+
+    <!-- Load styles (Dijit theme followed by OCP specific) -->
+    <!-- TODO: Add charset="utf-8" to all <link> tags? -->
+    <!-- TODO: Want these reset styles? http://o.aolcdn.com/dojo/1.3/dojo/resources/dojo.css -->
+    <link rel="stylesheet" type="text/css" href="lib/soria.css">
+    <!--
+    <link rel="stylesheet" type="text/css" href="dojotoolkit/dijit/themes/soria/soria.css" />
+    -->
+    <link rel="stylesheet" type="text/css" href="lib/ocp.css">
+    <link rel="stylesheet" type="text/css" href="lib/planner.css">
+
+    <!-- Configure and load the Dojo toolkit -->
+    <script type="text/javascript">//<![CDATA[
+        djConfig = {
+            // Debugging settings
+            isDebug: false,
+            debugAtAllCosts: false,
+            popup: false,
+
+            // Do not automatically parse Dojo markups (we need to load custom widgets first)
+            parseOnLoad: false,
+
+            // Pull in these Dojo modules automatically
+            require: [
+               'dojo.dnd.Source',
+               'dojo.fx',
+               'dojo.html',
+               'dojo.parser',
+               'dijit.Dialog',
+               'dijit.form.Button',
+               'dijit.form.CheckBox',
+               'dijit.form.HorizontalRule',
+               'dijit.form.HorizontalRuleLabels',
+               'dijit.form.NumberSpinner',
+               'dijit.layout.BorderContainer',
+               'dijit.layout.ContentPane',
+               'dijit.layout.StackContainer',
+               'dijit.layout.TabContainer',
+               'dijit.Menu',
+               'dijit.MenuBar',
+               'dijit.MenuItem',
+               'dijit.PopupMenuBarItem',
+               'dijit.TitlePane',
+               'dijit.TooltipDialog'
+            ],
+
+            // The base URL for our custom modules is our current directory
+            // Required for XD CDN -- comment out for local Dojo installation
+            baseUrl: './',
+
+            // Our custom ocp resources are located under our ./scripts/widget directory
+            // (which makes the name of our resources ocp.widget.*)
+            // Use top for local Dojo and bottom for XD CDN installation
+            modulePaths: {
+                //'ocp': '../../scripts'
+                'ocp': 'scripts'
+            },
+
+            // Called after everything on this page and everything in djConfig.require has loaded
+            addOnLoad: function () {
+                //console.log('First addOnLoad initialization...');
+
+                // With Dojo loaded, hide the message about Dojo not being loaded
+                dojo.style('dojoLoading', 'display', 'none');
+
+                // Since the page's contents (including the ocp*.js files) have been loaded
+                // and executed, the ocp top-level variable/namespace has been created
+                // so we can load the ocp.widget.* resources into it.
+                dojo.require('ocp.widget.LabeledHorizontalSlider');
+                dojo.require('ocp.widget.TitledContentPane');
+
+                // If we are using an XD CDN, the XD loader loads the modules asynchronously
+                // behind the scenes while the dojo.require call returns immediately.
+                // To get notified when the requires have actually been loaded,
+                // do another addOnLoad hook.
+                dojo.addOnLoad(function () {
+                    //console.log('Second addOnLoad initialization...');
+
+                    // With all OCP content loaded, validate that every object/class exists
+                    if (!((typeof ocp == 'object') &&
+                        ocp.loader && ocp.loader.relnotes && ocp.loader.ManagedModule &&
+                        ocp.util && ocp.util.print && ocp.util.loadsave &&
+                        ocp.contact && ocp.contact.letterDecoder &&
+                        ocp.input &&
+                        ocp.race &&
+                        ocp.birth &&
+                        ocp.clazz && ocp.clazz.classDialog &&
+                        ocp.existing && ocp.existing.attrDialog && ocp.existing.skillDialog &&
+                        ocp.order &&
+                        ocp.level &&
+                        ocp.results &&
+                        ocp.widget &&
+                            ocp.widget.LabeledHorizontalSlider &&
+                            ocp.widget.TitledContentPane))
+                    {
+                       // An OCP object/class wasn't defined probably because of a JavaScript
+                       // incompatibility with this browser. Give the user a warning that
+                       // things are going to be broken, but let them go on in hopes that
+                       // the functionality they want still works.
+                       dojo.style('ocpNotLoaded', 'display', 'block');
+                    }
+
+                    // With our custom widgets now defined in the ocp.* namespace,
+                    // parse everything and initialize OCP
+                    dojo.parser.parse();
+                    ocp.initialize();
+                });
+            }
+        };
+    //]]></script>
+    <script type="text/javascript" src="lib/dojo.js"></script>
+    <!--
+    <script type="text/javascript"
+        src="http://o.aolcdn.com/dojo/1.3/dojo/dojo.xd.js.uncompressed.js"></script>
+    <script type="text/javascript"
+        src="http://o.aolcdn.com/dojo/1.3/dijit/dijit-all.js.uncompressed.js"></script>
+    <script type="text/javascript" src="dojotoolkit/dojo/dojo.js"></script>
+    -->
+
+    <!-- Load the OCP scripts in order (no initialization allowed yet) -->
+    <!-- TODO: Compress/merge these for faster loading? -->
+    <script type="text/javascript" src="lib/ocp.js"></script>
+    <script type="text/javascript" src="lib/ocp-loader.js"></script>
+    <script type="text/javascript" src="lib/ocp-util.js"></script>
+    <script type="text/javascript" src="lib/ocp-contact.js"></script>
+    <script type="text/javascript" src="lib/ocp-input.js"></script>
+    <script type="text/javascript" src="lib/ocp-race.js"></script>
+    <script type="text/javascript" src="lib/ocp-birth.js"></script>
+    <script type="text/javascript" src="lib/ocp-clazz.js"></script>
+    <script type="text/javascript" src="lib/ocp-existing.js"></script>
+    <script type="text/javascript" src="lib/ocp-order.js"></script>
+    <script type="text/javascript" src="lib/ocp-level.js"></script>
+    <script type="text/javascript" src="lib/ocp-results.js"></script>
+    <script type="text/javascript" src="lib/ocp-nullis.js"></script>
+</head>
+
+<body class="soria">
+    <div id="title">
+        <h1>Oblivion Character Planner</h1>
+        <div>The essential Elder Scrolls IV: Oblivion character planning tool.</div>
+    </div>
+
+
+    <!-- Notify browsers that can't run any JavaScript causing this page to look broken -->
+    <noscript>
+        &lt;div class="scriptFailWarning"&gt;
+            &lt;p&gt;JavaScript is not enabled.&lt;/p&gt;
+            &lt;p&gt;
+                OCP requires JavaScript to execute. Either your browser does not support
+                JavaScript or you need to enable it for this server.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    </noscript>
+
+    <!--
+         Notify users that JavaScript is enabled, but Dojo wasn't loaded (because NoScript
+         blocked it perhaps?). This will get hidden by the first addOnLoad.
+     -->
+    <div id="dojoLoading" class="scriptFailWarning">
+        <p>If this message remains, then the Dojo Toolkit has failed to load.</p>
+        <p>
+            For faster loading, OCP uses the Dojo Toolkit from the AOL CDN. Make sure your browser
+            is configured to allow execution of JavaScript scripts from the o.aolcdn.com server.
+        </p>
+    </div>
+
+    <!--
+         Notify users that JavaScript is enabled, but OCP wasn't completely loaded. Most likely
+         this occurred because some JavaScript constructs in OCP files aren't supported by this
+         browser. Start hidden and display in second addOnLoad validation if necessary.
+     -->
+    <div id="ocpNotLoaded" class="scriptFailWarning" style="display: none">
+        <p>There was an error loading/parsing the OCP JavaScript scripts.</p>
+        <p>
+            Assuming your browser is configured to execute JavaScript scripts from this server and
+            there are no bugs in OCP, this usually means your browser's JavaScript support is
+            incompatible with OCP.
+        </p>
+        <p>
+            While OCP is being designed with browser portability in mind, it only officially runs
+            on FireFox 3.0/3.5 because OCP is being developed on it. All other standards compliant
+            browsers may or may not work, but no version of IE works yet. In future OCP versions,
+            the major releases of Internet Explorer, Opera, Safari, and Google Chrome will be
+            explicitly supported.
+        </p>
+    </div>
+
+    <!-- The main interface -->
+    <div>
+        <!-- The main menu -->
+        <div dojotype="dijit.MenuBar" id="mainMenuBar">
+
+            <!-- Home just selects the home module -->
+            <div dojotype="dijit.MenuBarItem" class="mainMenuItem" onclick="ocp.setMainModule(&#39;home&#39;)">
+                Home
+            </div>
+
+            <!-- Planner has submenu items to support planner functions -->
+            <div dojotype="dijit.PopupMenuBarItem" class="mainMenuPopupItem">
+                <span>Planner</span>
+                <div dojotype="dijit.Menu">
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;planner&#39;)">
+                        Planner
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.util.openUtil(ocp.util.loadsave)">
+                        Load/Save...
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.util.openUtil(ocp.util.print)">
+                        Print...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instructions has submenu items to select specific subsections -->
+            <div dojotype="dijit.PopupMenuBarItem" class="mainMenuPopupItem">
+                <span>Instructions</span>
+                <div dojotype="dijit.Menu">
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;instructions&#39;, &#39;Overview&#39;)">
+                        Overview
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;instructions&#39;, &#39;Details&#39;)">
+                        Character Details
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;instructions&#39;, &#39;Order&#39;)">
+                        Leveling Order
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;instructions&#39;, &#39;Results&#39;)">
+                        Leveling Results
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advice has submenu items to select specific subsections -->
+            <div dojotype="dijit.PopupMenuBarItem" class="mainMenuPopupItem">
+                <span>Advice</span>
+                <div dojotype="dijit.Menu">
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;advice&#39;, &#39;Overview&#39;)">
+                        Overview
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;advice&#39;, &#39;Mechanics&#39;)">
+                        Oblivion's Mechanics
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;advice&#39;, &#39;Profile&#39;)">
+                        Gameplay Profile
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;advice&#39;, &#39;Concerns&#39;)">
+                        Key Concerns
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.loader.showSubmodule(&#39;advice&#39;, &#39;Nullis&#39;)">
+                        Nullis Example
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ just selects the FAQ module -->
+            <div dojotype="dijit.MenuBarItem" class="mainMenuItem" onclick="ocp.setMainModule(&#39;faq&#39;)">
+                FAQ
+            </div>
+
+            <!-- Release Notes submenu items just select the Release Notes module -->
+            <!-- TODO: Is it worth it to make these scroll the selected item to the top? -->
+            <div dojotype="dijit.PopupMenuBarItem" class="mainMenuPopupItem">
+                <span>Release Notes</span>
+                <div dojotype="dijit.Menu">
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;relnotes&#39;)">
+                        Known Issues
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;relnotes&#39;)">
+                        Change Log
+                    </div>
+                </div>
+            </div>
+
+            <!-- About submenu items select the About module (no need to scroll) or popup
+                 the author contact dialog -->
+            <div dojotype="dijit.PopupMenuBarItem" class="mainMenuPopupItem">
+                <span>About</span>
+                <div dojotype="dijit.Menu">
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;about&#39;)">
+                        Credits
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;about&#39;)">
+                        License
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;about&#39;)">
+                        Warranty
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.setMainModule(&#39;about&#39;)">
+                        Icons
+                    </div>
+                    <div dojotype="dijit.MenuItem" onclick="ocp.contact.dialog.show()">
+                        Contact Author...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--
+             The main stack container to show one module at a time.
+             All modules are loaderManagedContainers so the loader can cleanly handle errors.
+        -->
+        <div dojotype="dijit.layout.StackContainer" id="ocpStackContainer" dolayout="false">
+
+            <div dojotype="ocp.widget.TitledContentPane" title="Home" selected="true" id="homeContentPane" class="loaderManagedContainer" href="partials/home.html">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <!-- After the planner is loaded, initialize it -->
+            <div dojotype="dijit.layout.ContentPane" title="Planner" id="plannerContentPane" class="loaderManagedContainer" href="partials/planner.html" ondownloadend="ocp.initializePlanner()">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <div dojotype="ocp.widget.TitledContentPane" title="Instructions" id="instructionsContentPane" class="loaderManagedContainer" href="partials/instructions.html">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <div dojotype="ocp.widget.TitledContentPane" title="Advice" id="adviceContentPane" class="loaderManagedContainer" href="partials/advice.html">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <div dojotype="ocp.widget.TitledContentPane" title="FAQ" id="faqContentPane" class="loaderManagedContainer" href="partials/faq.html">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <!-- The release notes XML is pre-processed into HTML before being displayed -->
+            <div dojotype="ocp.widget.TitledContentPane" title="Release Notes" id="relnotesContentPane" class="loaderManagedContainer" href="partials/relnotes.xml" ioargs="{ handleAs: &#39;xml&#39; }">
+                <!-- Contents filled via AJAX request -->
+            </div>
+
+            <div dojotype="ocp.widget.TitledContentPane" title="About" id="aboutContentPane" class="loaderManagedContainer" href="partials/about.html">
+                <!-- Contents filled via AJAX request -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer with about info -->
+    <div id="aboutFooter">
+        <div id="aboutPrograms">
+            Using
+            <a href="http://www.dojotoolkit.org/">Dojo v<span id="dojoVersion">-none-</span></a>
+        </div>
+
+        <div id="aboutAuthors">
+            <div>
+                Oblivion Character Planner version <span id="ocpVersion">-none-</span>
+            </div>
+            <div>
+                © Copyright 2009
+                <a href="javascript:ocp.contact.dialog.show()" title="Contact Richard Doll">Richard Doll</a>,
+                All Rights Reserved.
+            </div>
+        </div>
+
+        <div id="aboutImages">
+            <div>
+                Content from
+                <a href="http://www.elderscrolls.com/">Elder Scrolls IV: Oblivion</a>
+            </div>
+            <div>
+                is owned by
+                <a href="http://www.bethsoft.com/">Bethesda Softworks LLC</a>
+            </div>
+        </div>
+    </div>
+
+
+</body></html>
