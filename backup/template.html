@@ -4,7 +4,7 @@
 
 &lt;style&gt;
 /*
-<head></head>
+<head/>
 */&lt;/style&gt;
 <head>
     <meta content='IE=EmulateIE9' http-equiv='X-UA-Compatible'/>
@@ -13,7 +13,7 @@
       <b:else/>
       <meta content='device-width=830' name='viewport'/>
     </b:if>
-    <script type='text/javascript'>
+    <script>
       function getCookie(key) {
         var pairs = document.cookie.split(&#39;; &#39;);
                                           for (var i = 0, pair; pair = pairs[i] &amp;&amp; pairs[i].split(&#39;=&#39;); i++) {
@@ -33,7 +33,7 @@
       <b:if cond='data:blog.pageType != &quot;item&quot;'>
         <script type='text/javascript'>
           var url = getCookie(&#39;dataved&#39;)
-                              if (!url) {
+          if (!url) {
             url = &#39;/p/welcome.html&#39;
           }
           self.location.replace(url)
@@ -65,8 +65,7 @@
     <link href='http://www.blogger.com/favicon-image.g?blogID=3023871881439413232' rel='shortcut icon' type='image/ico'/>
     <meta content='iJ3xmaiFJmak7Z2OBBarV5C_nUIJ2dYtz2CmQYcrq3Q' name='google-site-verification'/>
     <meta content='O9ygyaMH5Y0LQc8xCcJ99GCdH3JLr0M4kAcKdTMH354' name='google-site-verification'/>
-    <script src='//www.google.com/jsapi' async='true'></script>
-    <script src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' async='true'></script>
+    <script async='true' src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js'/>
   </head>
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
     <div class='content'>
@@ -74,11 +73,11 @@
         <macro:param default='section' name='idPrefix'/>
       </macro:include>
     </div>
-    <script type='text/javascript'>
+    <script async='true' type='text/javascript'>
       window.setTimeout(function() {
         document.body.className = document.body.className.replace(&#39;loading&#39;, &#39;&#39;)
-                                                                  $.getScript(&#39;//dataved.github.io/common.js&#39;)
-                                                                  }, 100);
+        $.getScript(&#39;//dataved.github.io/common.js&#39;)
+      }, 100);
     </script>
 &lt;style&gt;
 /*
@@ -119,6 +118,7 @@
     </b:if>
     <!-- aaf: page1 -->
   </macro:includable>
+
 <b:section-contents id='header-left'>
   <b:widget id='Header1' locked='false' title='Свободное общество dataved.ru (заголовок)' type='Header'>
     <b:widget-settings>
@@ -178,6 +178,22 @@
         <b:include name='quickedit'/>
       </b:includable>
   </b:widget>
+  <b:widget id='HTML9' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<form action='http://www.google.com/search' target='_blank' onsubmit='this.q.value += " site:dataved.ru"'><input style='font-size: 24pt; width: 215px' name='q' placeholder='Поиск'/></form>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
 </b:section-contents><b:section-contents id='header-right'>
   <b:widget id='HTML7' locked='false' title='' type='HTML'>
     <b:widget-settings>
@@ -202,7 +218,7 @@
       </b:includable>
   </b:widget>
 </b:section-contents><b:section-contents id='sidebar-top'>
-  <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML'>
+  <b:widget id='HTML8' locked='false' title='Комментарии свободного общества Датавед' type='HTML' version='1'>
     <b:widget-settings>
       <b:widget-setting name='content'><![CDATA[<!-- Disqus Widget -->]]></b:widget-setting>
     </b:widget-settings>
@@ -220,7 +236,7 @@
           <style type='text/css'>
             #comments {display:none;}
           </style>
-          <script type='text/javascript'>
+          <script>
             (function() {
               var bloggerjs = document.createElement(&#39;script&#39;);
                                                      bloggerjs.type = &#39;text/javascript&#39;;
@@ -311,7 +327,7 @@
 </b:section-contents><b:section-contents id='sidebar-post'>
   <b:widget id='HTML4' locked='false' title='' type='HTML'>
     <b:widget-settings>
-      <b:widget-setting name='content'>&lt;script type=&quot;text/javascript&quot; src=&quot;http://dataved.googlecode.com/svn/trunk/site/related-posts.js&quot;&gt;&lt;/script&gt;
+      <b:widget-setting name='content'>&lt;script type=&quot;text/javascript&quot; src=&quot;//cdn.rawgit.com/salmanarshad2000/blogger-related-posts-widget/v1.0.3/related-posts.min.js&quot;&gt;&lt;/script&gt;
 &lt;div class=&quot;related-posts-widget&quot;&gt;
 loading...
 &lt;/div&gt;</b:widget-setting>
@@ -1527,5 +1543,4 @@ loading...
         <b:include name='quickedit'/>
       </b:includable>
   </b:widget>
-</b:section-contents>
-</html>
+</b:section-contents></html>
