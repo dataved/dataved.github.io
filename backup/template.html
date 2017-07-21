@@ -69,33 +69,6 @@
     <script src='//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js' async='true'></script>
   </head>
   <body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
-    <b:section class='navbar' id='navbar' maxwidgets='1' showaddelement='no'>
-      <b:widget id='Navbar1' locked='false' title='Панель навигации' type='Navbar'>
-        <b:includable id='main'>&lt;script type=&quot;text/javascript&quot;&gt;
-    function setAttributeOnload(object, attribute, val) {
-      if(window.addEventListener) {
-        window.addEventListener(&#39;load&#39;,
-          function(){ object[attribute] = val; }, false);
-      } else {
-        window.attachEvent(&#39;onload&#39;, function(){ object[attribute] = val; });
-      }
-    }
-  &lt;/script&gt;
-&lt;div id=&quot;navbar-iframe-container&quot;&gt;&lt;/div&gt;
-
-&lt;script type=&quot;text/javascript&quot;&gt;
-(function() {
-var script = document.createElement(&#39;script&#39;);
-script.type = &#39;text/javascript&#39;;
-script.src = &#39;//pagead2.googlesyndication.com/pagead/js/google_top_exp.js&#39;;
-var head = document.getElementsByTagName(&#39;head&#39;)[0];
-if (head) {
-head.appendChild(script);
-}})();
-&lt;/script&gt;
-</b:includable>
-      </b:widget>
-    </b:section>
     <div class='content'>
       <macro:include id='main-columns' name='sections'>
         <macro:param default='section' name='idPrefix'/>
